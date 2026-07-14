@@ -1,0 +1,15 @@
+name = "nz-weather"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[triggers]
+crons = ["0 */6 * * *"]   # every 6 hours, on the hour (UTC)
+
+[[d1_databases]]
+binding = "DB"
+database_name = "nz-weather-db"
+database_id = "REPLACE_ME_AFTER_D1_CREATE"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
