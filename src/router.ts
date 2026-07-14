@@ -1,5 +1,6 @@
 import { ATTRIBUTION, LOCATIONS } from "./config";
 import { aggregateForLocation } from "./aggregate";
+import { runPull } from "./pull";
 import { history, latestPerLocation } from "./store";
 import type { Env } from "./types";
 
@@ -51,6 +52,15 @@ export async function handleRequest(request: Request, env: Env): Promise<Respons
     }
     const stats = await aggregateForLocation(env.DB, loc, days);
     return json({ source: ATTRIBUTION, days, ...stats });
+  }
+
+  if (pathname === "/api/admin/run-pull" && request.method === "POST") {
+    try {
+      const result = await runPull(env);
+      return json({ ok: true, ...result });
+    } catch (err) {
+      return json({ ok: false, error: String(err) }, 502);
+    }
   }
 
   // Static frontend assets (public/) are served via the Workers assets binding.
