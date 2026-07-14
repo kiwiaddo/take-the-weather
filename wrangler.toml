@@ -8,7 +8,7 @@ crons = ["0 */6 * * *"]   # every 6 hours, on the hour (UTC)
 [[d1_databases]]
 binding = "DB"
 database_name = "nz-weather-db"
-database_id = "REPLACE_ME_AFTER_D1_CREATE"
+database_id = "bcae3516-f49c-45ee-9bc5-3e6001ccaff4"
 
 [assets]
 directory = "./public"
