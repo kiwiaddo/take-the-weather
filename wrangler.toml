@@ -1,4 +1,4 @@
-name = "nz-weather"
+name = "take-the-weather"
 main = "src/index.ts"
 compatibility_date = "2025-01-01"
 
