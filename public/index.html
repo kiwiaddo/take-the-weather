@@ -12,8 +12,14 @@
     <p class="subtitle">Live conditions for Aotearoa, refreshed every 6 hours.</p>
   </header>
 
-  <main id="cards" class="cards">
-    <p class="loading">Loading weather…</p>
+  <main class="layout">
+    <section class="primary" id="primary" aria-live="polite">
+      <p class="loading">Loading weather…</p>
+    </section>
+    <aside class="sidebar" aria-label="Other locations">
+      <h2 class="sidebar-title">Locations</h2>
+      <nav id="location-list" class="location-list"></nav>
+    </aside>
   </main>
 
   <footer>

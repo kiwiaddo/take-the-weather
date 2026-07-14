@@ -41,6 +41,27 @@ export async function handleRequest(request: Request, env: Env): Promise<Respons
     return json({ source: ATTRIBUTION, location_id: loc, hours, observations: rows });
   }
 
+  if (pathname === "/api/series") {
+    const loc = url.searchParams.get("loc");
+    if (!isKnownLocation(loc)) {
+      return json({ error: "unknown or missing 'loc' query param" }, 400);
+    }
+    const hours = Number(url.searchParams.get("hours") ?? "48");
+    if (!Number.isFinite(hours) || hours <= 0) {
+      return json({ error: "'hours' must be a positive number" }, 400);
+    }
+    const rows = await history(env.DB, loc, hours);
+    // `forecast` is reserved for predicted observations once we start pulling
+    // hourly forecast data; the frontend already renders both segments.
+    return json({
+      source: ATTRIBUTION,
+      location_id: loc,
+      hours,
+      history: rows,
+      forecast: [],
+    });
+  }
+
   if (pathname === "/api/aggregate") {
     const loc = url.searchParams.get("loc");
     if (!isKnownLocation(loc)) {
