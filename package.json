@@ -1,6 +1,6 @@
 {
   "name": "nz-weather",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "NZ Weather Aggregator — Cloudflare Worker that pulls Open-Meteo data on a cron and serves it via a small API + frontend.",
   "scripts": {
